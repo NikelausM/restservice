@@ -21,7 +21,7 @@ jobs:
         java-version: '11'
 
     - name: Build with Maven
-      run: mvnw clean install
+      run: mvnw clean package
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
