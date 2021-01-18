@@ -22,6 +22,7 @@ import com.example.restservice.util.Utility;
 @RestController
 public class PersonController {
 
+	private static final String PATH_PREFIX = "/persons";
 	private static final String PERSONS_JSON_FILENAME = "/static/json/person/obj.json";
 	private static final String NEW_FORM_FILENAME = "/static/html/person/new.html";
 	private static final String EDIT_FORM_FILENAME = "/static/html/person/new.html";
@@ -35,7 +36,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/person")
+	@GetMapping(PATH_PREFIX)
 	public List<Person> indexGet() {
 		List<Person> persons = Utility.readFileToList(PERSONS_JSON_FILENAME, LIST_PERSON_TYPEREFERENCE);
 		return persons;
@@ -48,7 +49,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/person/new")
+	@GetMapping(PATH_PREFIX + "/new")
 	public ResponseEntity<String> newGet() {
 		String form = Utility.getHtml(NEW_FORM_FILENAME, this);
 		ResponseEntity<String> response = ResponseEntity.ok(form);
@@ -62,7 +63,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@PostMapping("/person")
+	@PostMapping(PATH_PREFIX)
 	public ResponseEntity<String> createPost(@ModelAttribute Person person) {
 		if (person.getId() == 0 || person.getName().equals(null) || person.getAge() == 0) {
 			return new ResponseEntity<String>("Invalid data provided, please try again.", HttpStatus.BAD_REQUEST);
@@ -85,7 +86,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/person/{id}")
+	@GetMapping(PATH_PREFIX + "/{id}")
 	public ResponseEntity<String> showGet(@PathVariable Long id) {
 		List<Person> persons = Utility.readFileToList(PERSONS_JSON_FILENAME, LIST_PERSON_TYPEREFERENCE);
 		Person person = null;
@@ -106,7 +107,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/person/{id}/edit")
+	@GetMapping(PATH_PREFIX + "/{id}/edit")
 	public ResponseEntity<String> editGet(@PathVariable Long id) {
 		List<Person> persons = Utility.readFileToList(PERSONS_JSON_FILENAME, LIST_PERSON_TYPEREFERENCE);
 		ResponseEntity<String> response = new ResponseEntity<String>("Person not found.", HttpStatus.NOT_FOUND);
@@ -126,7 +127,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@PutMapping("/person/{id}")
+	@PutMapping(PATH_PREFIX + "/{id}")
 	public ResponseEntity<String> updatePut(@PathVariable Long id) {
 		List<Person> persons = Utility.readFileToList(PERSONS_JSON_FILENAME, LIST_PERSON_TYPEREFERENCE);
 		ResponseEntity<String> response = new ResponseEntity<String>("Person not found.", HttpStatus.NOT_FOUND);
@@ -145,7 +146,7 @@ public class PersonController {
 	 * 
 	 * @return
 	 */
-	@DeleteMapping("/person/{id}")
+	@DeleteMapping(PATH_PREFIX + "/{id}")
 	public ResponseEntity<String> destroyDelete(@PathVariable Long id) {
 		List<Person> persons = Utility.readFileToList(PERSONS_JSON_FILENAME, LIST_PERSON_TYPEREFERENCE);
 		ResponseEntity<String> response = new ResponseEntity<String>("Person not found.", HttpStatus.NOT_FOUND);
