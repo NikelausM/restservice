@@ -22,7 +22,7 @@ public class PersonController {
 	private static final String PATH_PREFIX = "/persons";
 	private static final String PERSONS_JSON_FILENAME = "/static/json/person/obj.json";
 	private static final String NEW_FORM_FILENAME = "/static/html/person/new.html";
-	private static final String EDIT_FORM_FILENAME = "/static/html/person/new.html";
+	private static final String EDIT_FORM_FILENAME = "/static/html/person/edit.html";
 	private static final TypeReference<List<Person>> LIST_PERSON_TYPEREFERENCE = new TypeReference<List<Person>>() {
 	};
 
