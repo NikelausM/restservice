@@ -1,4 +1,2 @@
 # restservice
-A Java Spring Boot RESTful microservice.
-
-This application, including the README is still under development.
+A Java Spring Boot RESTful microservice for serving a generic resource.
